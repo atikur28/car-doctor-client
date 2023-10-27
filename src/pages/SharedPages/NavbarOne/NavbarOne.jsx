@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { BsHandbag, BsSearch } from "react-icons/bs";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import navLogo from "../../../assets/logo.svg";
 
 const NavbarOne = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -114,7 +115,7 @@ const NavbarOne = () => {
           </ul>
         </div>
         <Link to="/" className="w-12 md:w-16 normal-case text-xl">
-          <img src="./src/assets/logo.svg" alt="" />
+          <img src={navLogo} alt="" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

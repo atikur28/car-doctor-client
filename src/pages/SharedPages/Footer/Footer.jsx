@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import footerImg from "../../../assets/logo.svg";
 
 const Footer = () => {
   return (
     <footer className="footer text-white bg-black p-10 lg:py-20">
       <aside>
-        <img className="" src="./src/assets/logo.svg" alt="" />
+        <img className="" src={footerImg} alt="" />
         <p className="w-[283px]">
           Edwin Diaz is a software and web technologies engineer, a life coach
           trainer who is also a serial .
