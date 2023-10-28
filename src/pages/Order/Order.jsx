@@ -9,7 +9,7 @@ const Order = () => {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
 
-  const url = `http://localhost:5000/checkouts?email=${user?.email}`;
+  const url = `https://car-doctor-server-kohl-phi.vercel.app/checkouts?email=${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -27,7 +27,7 @@ const Order = () => {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`http://localhost:5000/checkouts/${id}`, {
+            fetch(`https://car-doctor-server-kohl-phi.vercel.app/checkouts/${id}`, {
                 method: 'DELETE',
             })
               .then(res => res.json())
@@ -57,7 +57,7 @@ const Order = () => {
         confirmButtonText: 'Yes, update it!'
       }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`http://localhost:5000/checkouts/${id}`, {
+            fetch(`https://car-doctor-server-kohl-phi.vercel.app/checkouts/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type' : 'application/json'

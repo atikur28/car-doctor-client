@@ -26,7 +26,7 @@ const Checkout = () => {
       message,
     };
 
-    fetch("http://localhost:5000/checkouts", {
+    fetch("https://car-doctor-server-kohl-phi.vercel.app/checkouts", {
       method: "POST",
       headers: {
         "content-type": "application/json",
