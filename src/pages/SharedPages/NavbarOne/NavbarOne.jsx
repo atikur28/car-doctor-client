@@ -45,12 +45,12 @@ const NavbarOne = () => {
       </li>
       <li>
         <NavLink
-          to="/blog"
+          to="/order"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-red-500" : ""
           }
         >
-          Blog
+          Order
         </NavLink>
       </li>
       <li>

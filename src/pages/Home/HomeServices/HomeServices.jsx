@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import SingleService from "./SingleService/SingleService";
-import { Link } from "react-router-dom";
 
 const HomeServices = () => {
 
@@ -21,9 +20,6 @@ const HomeServices = () => {
                 {
                     services.map(service => <SingleService key={service.service_id} service={service}></SingleService>)
                 }
-            </div>
-            <div className="w-max mx-auto">
-                <Link><button className="text-[#FF3811] font-bold py-3 px-5 rounded border border-[#FF3811]">More Services</button></Link>
             </div>
         </div>
     );
