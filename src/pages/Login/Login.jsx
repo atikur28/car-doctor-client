@@ -3,15 +3,18 @@ import log from "../../assets/images/login/login.svg";
 import facebook from "../../assets/images/login/bx_bxl-facebook.svg";
 import linkedin from "../../assets/images/login/bx_bxl-linkedin.svg";
 import google from "../../assets/images/login/google 1.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
 
   const { login, loginInWithGoogle } = useContext(AuthContext);
+  
+  const location = useLocation();
 
   const navigate = useNavigate();
 
@@ -25,10 +28,17 @@ const Login = () => {
 
     login(email, password)
       .then((result) => {
-        console.log(result.user);
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const user = {email};
         form.reset();
         Swal.fire("Good job!", "You clicked the button!", "success");
-        navigate("/");
+        axios.post('https://car-doctor-server-kohl-phi.vercel.app/jwt', user, {withCredentials: true})
+          .then(res => {
+            if(res.data.success){
+              navigate(location?.state ? location?.state : "/");
+            }
+          })
       })
       .catch((error) => {
         setLoginError(error.message);
@@ -40,7 +50,7 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         Swal.fire("Good job!", "You have successfully logged in..", "success");
-        navigate("/");
+        navigate(location?.state ? location?.state : "/");
       })
       .catch((error) => {
         setLoginError(error.message);

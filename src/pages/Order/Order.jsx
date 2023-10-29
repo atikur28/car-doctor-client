@@ -4,6 +4,7 @@ import OrderBanner from "./OrderBanner/OrderBanner";
 import { AuthContext } from "../../providers/AuthProvider";
 import SingleOrder from "./SingleOrder/SingleOrder";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Order = () => {
   const { user } = useContext(AuthContext);
@@ -11,9 +12,13 @@ const Order = () => {
 
   const url = `https://car-doctor-server-kohl-phi.vercel.app/checkouts?email=${user?.email}`;
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setOrders(data));
+    axios.get(url, {withCredentials: true})
+      .then(res => {
+        setOrders(res.data);
+      })
+    // fetch(url)
+    //   .then((res) => res.json())
+    //   .then((data) => setOrders(data));
   }, [url]);
 
   const handleDelete = id => {
